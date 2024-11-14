@@ -1,0 +1,100 @@
+@api = http://127.0.0.1:5000
+@authorize = Authorization: {{login.response.body.$.session_token}}
+
+###
+GET {{api}}/api/v1/ping
+
+###
+POST {{api}}/api/v1/users/register
+
+{
+  "username": "john",
+  "password": "password"
+}
+
+###
+# @name login
+POST {{api}}/api/v1/users/login
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "password"
+}
+
+###
+# @name login
+POST {{api}}/api/v1/users/refresh
+Content-Type: application/json
+
+{
+  "session_token": "{{login.response.body.$.session_token}}",
+  "refresh_token": "{{login.response.body.$.refresh_token}}"
+}
+
+###
+POST {{api}}/api/v1/account/rename
+{{authorize}}
+Content-Type: application/json
+
+{
+  "new_name": "john"
+}
+
+###
+GET {{api}}/api/v1/account/profile
+{{authorize}}
+
+###
+# @name added_question
+POST {{api}}/api/v1/questions
+{{authorize}}
+Content-Type: application/json
+
+{
+  "question": "jesteś dorosły ?",
+  "answer": {
+    "answer_type": 1,
+    "answer_data": {
+      "answers": [
+        "tak",
+        "nie"
+      ]
+    }
+  }
+}
+
+###
+PATCH {{api}}/api/v1/questions
+{{authorize}}
+Content-Type: application/json
+
+{
+  "question_id": "{{added_question.response.body.$.question_id}}",
+  "question": "are you dead ?",
+  "answer": {
+    "answer_type": 1,
+    "answer_data": {
+      "answers": [
+        "yes",
+        "no"
+      ]
+    }
+  }
+}
+
+###
+DELETE {{api}}/api/v1/questions
+{{authorize}}
+Content-Type: application/json
+
+{
+  "question_id": "{{added_question.response.body.$.question_id}}"
+}
+
+###
+GET {{api}}/api/v1/questions?limit=5&page=0&search_Answer=&Search_Answer_Case_Sensitive=false
+###
+GET {{api}}/api/v1/questions?limit=5&page=0&search_answer=&search_answer_case_sensitive=false
+###
+GET {{api}}/api/v1/questions?limit=5&page=0&search_nick=j&search_nick_case_sensitive=false
