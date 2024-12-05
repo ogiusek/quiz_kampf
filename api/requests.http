@@ -65,6 +65,25 @@ Content-Type: application/json
 }
 
 ###
+# @name added_question
+POST {{api}}/api/v1/questions
+{{authorize}}
+Content-Type: application/json
+
+{
+  "question": "żyjesz ?",
+  "answer": {
+    "answer_type": 2,
+    "answer_data": {
+      "correct_answers": [
+        "tak",
+        "nie"
+      ]
+    }
+  }
+}
+
+###
 PATCH {{api}}/api/v1/questions
 {{authorize}}
 Content-Type: application/json
@@ -97,4 +116,9 @@ GET {{api}}/api/v1/questions?limit=5&page=0&search_Answer=&Search_Answer_Case_Se
 ###
 GET {{api}}/api/v1/questions?limit=5&page=0&search_answer=&search_answer_case_sensitive=false
 ###
+GET {{api}}/api/v1/questions?limit=5&page=0&search_answer=&search_answer_case_sensitive=false
+###
 GET {{api}}/api/v1/questions?limit=5&page=0&search_nick=j&search_nick_case_sensitive=false
+
+###
+GET http://localhost:5000/api/v1/questions?search_question=&search_question_case_sensitive=false&search_answer=&search_answer_case_sensitive=false&search_nick=&limit=50&page=0

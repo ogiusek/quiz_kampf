@@ -62,7 +62,11 @@
     async function Connect() {
       const conn = new WebSocket(`${ws}/ws?session_token=${localStorage.getItem(sessionTokenKey)}`)
       c = conn;
-      conn.onmessage = (m) => console.log(JSON.parse(m.data))
+      conn.onmessage = (m) => {
+        const date = new Date()
+        const formattedDateTime = `${String(date.getHours()).padStart(2, '0')}-${String(date.getMinutes()).padStart(2, '0')}-${String(date.getSeconds()).padStart(2, '0')}`;
+        console.log(formattedDateTime, JSON.parse(m.data))
+      }
     }
 
     Login().then(Connect)
