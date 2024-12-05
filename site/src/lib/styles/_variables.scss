@@ -1,0 +1,23 @@
+@use "sass:color";
+
+$primary-bg-color: #efefef;
+$primary-text-color: black;
+$link-color: blue;
+
+$secondary-bg-color: black;
+$secondary-text-color: white;
+
+$accent-color: rgb(155, 5, 219);
+
+$green: rgb(42, 177, 42);
+$blue: rgb(41, 41, 235);
+$red: rgb(218, 33, 33);
+
+$add-color: $green;
+$remove-color: $red;
+$update-color: $blue;
+
+
+$sm-min: 576px;
+$md-min: 768px;
+$lg-min: 1200px;

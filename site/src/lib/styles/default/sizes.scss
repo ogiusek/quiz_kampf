@@ -1,0 +1,25 @@
+@use "../variables" as *;
+
+@media (max-width: calc($sm-min - 1px)) {
+  *.xs {
+    display: block !important;
+  }
+}
+
+@media (min-width: $sm-min) and (max-width: calc($md-min - 1px)) {
+  *.sm {
+    display: block !important;
+  }
+}
+
+@media (min-width: $md-min) and (max-width: calc($lg-min - 1px)) {
+  *.md {
+    display: block !important;
+  }
+}
+
+@media (min-width: $lg-min) {
+  *.lg {
+    display: block !important;
+  }
+}
